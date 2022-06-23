@@ -45,7 +45,7 @@ export default function App() {
       // ctx.globalCompositeOperation = 'destination-over';
 
       // ctx.drawImage(sun, 0, 0, 300, 300);
-      const time = Date.now() * 0.01;  // convert time to seconds
+      const time = Date.now() * 0.01; // convert time to seconds
 
       mesh.rotation.x = time;
       mesh.rotation.y = time;
@@ -58,8 +58,13 @@ export default function App() {
     // setTimeout(animate, 1000);
 
     const handler = () => {
-      rafId || animate();
-      canvas.style.setProperty('transform', `translateY(${window.scrollY}px)`);
+      // canvas.style.setProperty('transform', `translateY(${window.scrollY}px)`);
+
+      if (window.scrollY > 1000) {
+        canvas.style.cssText = 'position: absolute; top: 1000px;';
+      } else {
+        canvas.style.cssText = 'position: fixed;';
+      }
     };
 
     // requestAnimationFrame(animate);
