@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+// import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 import './style.css';
 
 export default function App() {
@@ -8,28 +8,33 @@ export default function App() {
   React.useEffect(() => {
     const canvas = ref.current!;
 
-    const scene = new Scene();
+    // const scene = new Scene();
 
-    const camera = new PerspectiveCamera();
+    // const camera = new PerspectiveCamera();
 
-    const renderer = new WebGLRenderer({
-      canvas,
-    });
+    // const renderer = new WebGLRenderer({});
 
-    renderer.setClearAlpha(0);
+    // renderer.setClearAlpha(0);
 
     let rafId: any;
 
+    const ctx = canvas.getContext('2d');
+
     const animate = () => {
+      ctx.clearRect(0, 0, 300, 300); // clear canvas
       rafId = requestAnimationFrame(animate);
-      renderer.render(scene, camera);
+      // ctx.globalCompositeOperation = 'destination-over';
+
+      // ctx.drawImage(sun, 0, 0, 300, 300);
+
+      // renderer.render(scene, camera);
     };
 
     const handler = () => {
       canvas.style.setProperty('transform', `translateY(${window.scrollY}px)`);
     };
 
-    animate();
+    requestAnimationFrame(animate);
 
     window.addEventListener('scroll', handler);
 
